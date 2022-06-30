@@ -1,12 +1,12 @@
 import { IoIosArrowForward } from "react-icons/io";
 import style from "../../styles/hero.module.css";
-import Image from "next/image";
+
 const Hero = () => {
   return (
     <>
       <main className='relative'>
-        <div className='flex py-10 flex-col-reverse sm:flex-row items-center sm:w-5/6 mx-auto'>
-          <div className='p-4 w-full'>
+        <div className='flex py-10 my-10 sm:my-0 flex-col-reverse sm:flex-row items-center sm:w-5/6 mx-auto'>
+          <div className='p-4 w-full my-4'>
             <h1 className='text-4xl font-extrabold'>
               Repping <span className='font-semibold'>a better</span> you
             </h1>
@@ -34,12 +34,7 @@ const Hero = () => {
             />
           </div>
         </div>
-        <img
-          className='absolute top-0 right-52'
-          src='/images/3.png'
-          alt='bg'
-          layout='fill'
-        />
+        <img className='absolute top-0 right-52' src='/images/3.png' alt='bg' />
         <img
           className='absolute top-52 left-0'
           src='/images/three.png'
