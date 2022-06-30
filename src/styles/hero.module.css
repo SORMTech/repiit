@@ -1,0 +1,33 @@
+.img1 {
+  background: url("/images/five.png");
+}
+.img2 {
+  background: url("/images/four.png");
+}
+.img3 {
+  background: url("/images/one.png");
+}
+.img1,
+.img2,
+.img3 {
+  height: 250px;
+  max-height: 250px;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 20px solid #fff;
+}
+@media (max-width: 640px) {
+  .img1,
+  .img2,
+  .img3 {
+    height: 300px;
+    min-width: 300px;
+    max-width: 350px;
+  }
+} ;

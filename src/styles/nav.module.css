@@ -1,0 +1,12 @@
+.nav_center {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_center img {
+  max-width: 100%;
+  min-width: 80px;
+}
