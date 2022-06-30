@@ -156,7 +156,7 @@ const main = () => {
       <p className='p-4 my-5 mt-10 text-center text-sm font-semibold text-gray-900'>
         Trendy Clothing & Accessories at REPIIT - An Online Dress Boutique
         REPIIT is a UNISEX clothing store with new trendy and affordable
-        arrivals dropping 2-3 times weekly. Shop the latest trends in women's
+        arrivals dropping 2-3 times weekly. Shop the latest trends in women`s
         fashion dresses, tops, sweaters, skirts, jeans, accessories & more.
       </p>
 
