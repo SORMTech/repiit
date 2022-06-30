@@ -1,11 +1,12 @@
 import { IoIosArrowForward } from "react-icons/io";
 import style from "../../styles/hero.module.css";
+import Image from "next/image";
 const Hero = () => {
   return (
     <>
       <main className='relative'>
         <div className='flex py-10 flex-col-reverse sm:flex-row items-center sm:w-5/6 mx-auto'>
-          <div className='p-4'>
+          <div className='p-4 w-full'>
             <h1 className='text-4xl font-extrabold'>
               Repping <span className='font-semibold'>a better</span> you
             </h1>
@@ -20,40 +21,45 @@ const Hero = () => {
               </i>
             </button>
           </div>
-          <div className='w-5/6 mx-auto mt-8 relative'>
+          <div className='mx-auto mt-8 relative w-5/6'>
             <img
-              src='images/six.png'
+              src='/images/six.png'
               className='sm:w-5/6 mx-auto'
               alt='buyers'
             />
             <img
               className='w-2/3 left-12 absolute -top-5 -z-20'
-              src='images/two.png'
+              src='/images/two.png'
               alt='circle'
             />
           </div>
         </div>
-        <img className='absolute top-0 right-52' src='images/3.png' alt='bg' />
+        <img
+          className='absolute top-0 right-52'
+          src='/images/3.png'
+          alt='bg'
+          layout='fill'
+        />
         <img
           className='absolute top-52 left-0'
-          src='images/three.png'
+          src='/images/three.png'
           alt='bg'
         />
-        <div className='bg-gradient-to-b w-full from-orange-300 via-orange-100 to-pink-200 p-4 py-16'>
+        <div className='bg-gradient-to-b -mt-10 w-full from-orange-300 via-orange-100 to-pink-200 p-4 py-16'>
           <div className='grid sm:grid-cols-3 items-center justify-center sm:w-4/6 mx-auto gap-3'>
             <div className={`${style.img1}`}>
               <h4 className='bg-white p-4 mx-auto text-sm text-center'>
-                Men's Collection
+                Men`s Collection
               </h4>
             </div>
             <div className={style.img2}>
               <h4 className='bg-white p-4 mx-auto text-sm text-center'>
-                Women's Collection
+                Women`s Collection
               </h4>
             </div>
             <div className={style.img3}>
               <h4 className='bg-white p-4 mx-auto text-sm text-center'>
-                Kid's Collection
+                Kid`s Collection
               </h4>
             </div>
           </div>
