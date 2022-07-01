@@ -8,13 +8,13 @@ import style from "./../styles/nav.module.css";
 const Nav = () => {
   return (
     <>
-      <nav className='p-4 flex items-center bg-gray-50'>
+      <nav className='p-4 flex items-center absolute z-50 top-0 w-full px-8 shadow-sm'>
         <div className='hidden w-1/2 lg:flex grid-cols-5 justify-between text-bold'>
-          <Link href=''>New & Featured</Link>
-          <Link href=''>Men</Link>
-          <Link href=''>Women</Link>
-          <Link href=''>Kids</Link>
-          <Link href=''>Sale</Link>
+          <Link href='/'>New & Featured</Link>
+          <Link href='/'>Men</Link>
+          <Link href='/'>Women</Link>
+          <Link href='/'>Kids</Link>
+          <Link href='/'>Sale</Link>
         </div>
         <div className={`${style.nav_center} gap-1`}>
           <div className='flex flex-col lg:items-center lg:justify-center'>
@@ -43,7 +43,7 @@ const Nav = () => {
           </div>
           <div className='text-sm hidden sm:flex justify-around items-center font-bold'>
             <h5>Join us</h5>
-            <button className='bg-orange-700 p-2 text-white font-bold rounded-md'>
+            <button className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 p-2 text-white font-bold rounded-md hover:scale-105 transition'>
               Get Started
             </button>
           </div>
