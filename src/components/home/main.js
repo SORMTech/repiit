@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 const main = () => {
   const addStyle =
-    "bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white flex justify-around items-center p-2 px-3 sm:px-6 -translate-y-20 w-fit ml-auto cursor-pointer";
+    "bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white flex justify-around items-center p-2 px-3 sm:px-6 -translate-y-20 w-fit ml-auto cursor-pointer hover:scale-105";
   return (
     <>
       <div className='relative shadow-lg py-12'>
@@ -13,9 +13,9 @@ const main = () => {
           </h2>
           <hr className='border-1 border-gray-900' />
         </div>
-        <div className='grid grid-cols-2 gap-4 sm:w-4/6 mx-auto p-8 justify-center items-center'>
+        <div className='grid  sm:grid-cols-2 gap-4 sm:w-4/6 mx-auto p-8 justify-center items-center'>
           <div className='relative w-full h-full'>
-            <img src='images/seven.png' className='h-full' alt='shoe' />
+            <img src='images/seven.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -27,7 +27,7 @@ const main = () => {
             />
           </div>
           <div className='relative h-full'>
-            <img src='images/nine.png' className='h-full' alt='shoe' />
+            <img src='images/nine.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -39,7 +39,7 @@ const main = () => {
             />
           </div>
           <div className='relative h-full'>
-            <img src='images/eigth.png' alt='shoe' className='h-full' />
+            <img src='images/eigth.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -51,7 +51,7 @@ const main = () => {
             />
           </div>
           <div className='relative h-full'>
-            <img src='images/ten.png' className='h-full' alt='shoe' />
+            <img src='images/ten.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -70,12 +70,12 @@ const main = () => {
           </i>
         </button>
         <img
-          className='absolute top-0 right-0 w-1/2'
+          className='absolute top-0 right-0 w-1/2 -z-20'
           src='/images/3.png'
           alt='bg'
         />
         <img
-          className='absolute top-0 -left-36'
+          className='absolute top-0 -left-36 -z-20'
           src='/images/three.png'
           alt='bg'
         />
@@ -88,9 +88,9 @@ const main = () => {
           </h2>
           <hr className='border-1 border-gray-900' />
         </div>
-        <div className='grid grid-cols-2 gap-4 sm:w-4/6 mx-auto p-8 justify-center items-center'>
+        <div className='grid sm:grid-cols-2 gap-4 sm:w-4/6 mx-auto p-8 justify-center items-center'>
           <div className='relative w-full h-full'>
-            <img src='images/eleven.png' className='h-full' alt='shoe' />
+            <img src='images/eleven.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -102,7 +102,7 @@ const main = () => {
             />
           </div>
           <div className='relative h-full'>
-            <img src='images/twelve.png' className='h-full' alt='shoe' />
+            <img src='images/twelve.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -114,7 +114,7 @@ const main = () => {
             />
           </div>
           <div className='relative h-full'>
-            <img src='images/13.png' alt='shoe' className='h-full' />
+            <img src='images/13.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -126,7 +126,7 @@ const main = () => {
             />
           </div>
           <div className='relative h-full'>
-            <img src='images/14.png' className='h-full' alt='shoe' />
+            <img src='images/14.png' alt='shoe' />
             <div className={addStyle}>
               <h5 className='text-sm'>Add to Bag</h5>
               <img className='w-6 mx-2' src='images/add.png' alt='img' />
@@ -145,12 +145,12 @@ const main = () => {
           </i>
         </button>
         <img
-          className='absolute top-0 right-0 w-1/2'
+          className='absolute top-0 right-0 w-1/2 -z-20'
           src='/images/3.png'
           alt='bg'
         />
         <img
-          className='absolute top-0 -left-36'
+          className='absolute top-0 -left-36 -z-20'
           src='/images/three.png'
           alt='bg'
         />
