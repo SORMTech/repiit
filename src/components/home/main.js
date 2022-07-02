@@ -1,6 +1,9 @@
 import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
-const main = () => {
+
+const main = ({ featuredProducts, trendingProducts }) => {
+  console.log(featuredProducts, trendingProducts);
+
   const addStyle =
     "bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white flex justify-around items-center p-2 px-3 sm:px-6 -translate-y-20 w-fit ml-auto cursor-pointer hover:scale-105";
   return (
@@ -63,12 +66,14 @@ const main = () => {
             />
           </div>
         </div>
+
         <button className='flex text-sm items-center  text-gray-900 hover:text-white p-1 px-8 rounded-full font-semibold w-fit border-gray-900 border-2 mx-auto hover:bg-gray-900 transition'>
           <h5>See More</h5>
           <i className=' p-1 rounded-full m-2  text-2xl'>
             <IoIosArrowForward />
           </i>
         </button>
+        
         <img
           className='absolute top-0 right-0 w-1/2 -z-20'
           src='/images/3.png'
@@ -80,6 +85,7 @@ const main = () => {
           alt='bg'
         />
       </div>
+      
       <div className='relative shadow-lg py-12'>
         <div className='grid grid-cols-3 items-center w-4/6 mx-auto'>
           <hr className='border-1 border-gray-900' />

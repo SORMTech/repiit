@@ -1,25 +1,16 @@
-// import User from '../models/User'
-
+// const { default: User } = require('../models/User')
 const { default: Product } = require('../models/Product')
 const { connect, disconnect, convertDocToObj } = require('./db')
 
-async function getAllProductsWithLimit(limit) {
+export async function getAllProducts(limit, sumOfprevLimits) {
   await connect()
-  const products = await Product.find().limit(limit)
+  const products = await Product.find().limit(limit).skip(sumOfprevLimits)
   await disconnect()
 
   return JSON.parse(JSON.stringify(products))
 }
 
-async function getNext(limit, skip) {
-  await connect()
-  const products = await Product.find().limit(limit).skip(skip)
-  await disconnect()
-
-  return JSON.parse(JSON.stringify(products))
-}
-
-async function getProductBySlug(slug) {
+export async function getProductBySlug(slug) {
   try {
     await connect()
     const products = await Product.findOne({ slug })
@@ -31,10 +22,10 @@ async function getProductBySlug(slug) {
   }
 }
 
-async function getProductsByCategory(category) {
+export async function getProductsByCategory(category, limit, sumOfprevLimits = "0") {
   try {
     await connect()
-    const products = await Product.find({ category: { $in: [category] } })
+    const products = await Product.find({ category: { $in: [category] } }).limit(limit).skip(sumOfprevLimits)
     await disconnect()
     return JSON.parse(JSON.stringify(products))
   } catch (err) {
@@ -43,23 +34,10 @@ async function getProductsByCategory(category) {
   }
 }
 
-async function getFeaturedProducts() {
+export async function getProductsByProp(prop, limit, sumOfprevLimits = "0") {
   try {
     await connect()
-    const products = await Product.find({ featured: true }).limit(4)
-    await disconnect()
-
-    return JSON.parse(JSON.stringify(products))
-  } catch (err) {
-    console.log(err);
-    return null
-  }
-}
-
-async function getTrendingProducts() {
-  try {
-    await connect()
-    const products = await Product.find({ trending: true }).limit(4)
+    const products = await Product.find({ prop: true }).limit(limit).skip(sumOfprevLimits)
     await disconnect()
 
     return JSON.parse(JSON.stringify(products))
@@ -69,7 +47,7 @@ async function getTrendingProducts() {
   }
 }
 
-async function getFilteredProducts(products) {
+export async function getFilteredProducts(products) {
   // const products = await Product.find({}).lean()
 
   const final = products
@@ -78,22 +56,42 @@ async function getFilteredProducts(products) {
   return final
 }
 
-async function getUserData(userEmail) {
-  //   await connect()
-  //   const user = await User.findOne({ email: userEmail }).lean()
-  //   await disconnect()
+export async function getUserData(email) {
+  try {
+    await connect()
+    const user = await User.findOne({ email }).lean()
+    await disconnect()
 
-  //   const { email, name, address, orderItems } = user
-
-  //   return {
-  //     user: { email, name, address, orderItems }
-  //   }
-  // }
-
-  // async function getAllUsers() {
-  //   const user = await User.find({}).lean()
-
-  //   return user
+    return {
+      user: {},
+      success: true,
+      mes: 'success'
+    }
+  } catch (err) {
+    return {
+      user: {},
+      success: false,
+      mes: 'an error occured'
+    }
+  }
 }
 
-export { getAllProductsWithLimit, getNext, getProductBySlug, getProductsByCategory, getFeaturedProducts, getTrendingProducts, getFilteredProducts }
+async function getAllUsers() {
+  try {
+    await connect()
+    const user = await User.find({}).lean()
+    await disconnect()
+
+    return {
+      user: {},
+      success: true,
+      mes: 'success'
+    }
+  } catch (err) {
+    return {
+      user: {},
+      success: false,
+      mes: 'an error occured'
+    }
+  }
+}

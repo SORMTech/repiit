@@ -7,7 +7,19 @@ import { BsArrowLeftSquare } from 'react-icons/bs'
 
 export default function AdminLayout({ children }) {
   return (<>
-    <div className="container flex gap-10">
+    <div id="spinner" className="hidden fixed top-0 left-0 w-full h-screen z-50" style={{ background: 'rgba(0,0,0,.7)' }}>
+      <div className="grid place-items-center">
+        <div id="spinnerBody" class="flex justify-center items-center">
+          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+            <span class="hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* <div id="overlay" className="fixed top-0 left-0 w-full h-screen z-[99999]" style={{ background: 'rgba(0,0,0,.7)' }}></div> */}
+
+    <div className="w-screen overflow-auto flex">
       <div className="w-3/12 flex flex-col gap-5 bg-[rgb(126,124,197)] h-screen pl-3 pr-7 py-5 relative" style={{ background: 'linear-gradient(121deg, rgba(6,0,178,1) 0%, rgba(107,0,207,1) 82%)' }}>
         <div className="text-center mb-5 bg-white pt-1">
           <Image src="/repit-2.png" alt="" width="120px" height="55px" />
@@ -68,8 +80,8 @@ export default function AdminLayout({ children }) {
           </div>
         </a></Link>
       </div>
-      <div className="w-full h-screen overflow-auto scrollbar-hide">
-        <div className="border w-full mt-1 py-2 text-center text-2xl mb-2" style={{ letterSpacing: '10px' }}>
+      <div className="h-screen overflow-auto scrollbar-hide px-5">
+        <div className="border mt-1 py-2 text-center text-2xl mb-2" style={{ letterSpacing: '10px' }}>
           <span className="font-black text-red-600">REPIIT</span> ADMIN PANEL
         </div>
         {children}

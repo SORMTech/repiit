@@ -90,16 +90,6 @@ export default function CreateProduct() {
     }
 
   return (<>
-    <div id="spinner" className="hidden fixed top-0 left-0 w-full h-screen z-50" style={{ background: 'rgba(0,0,0,.7)' }}>
-      <div className="grid place-items-center">
-        <div id="spinnerBody" class="flex justify-center items-center">
-          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-            <span class="hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <AdminLayout>
       <div className="flex items-center gap-3">
         <BsArrowRightSquare /> <div>Create product</div>
