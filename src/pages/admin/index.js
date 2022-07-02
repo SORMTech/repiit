@@ -33,9 +33,9 @@ export default function Admin({ products }) {
               <tr key={product?._id}>
                 <td>{product?.name}</td>
                 <td>{product?.price}</td>
-                <td>{product?.salesPrice}</td>
-                <td>{product?.asvailableQty}</td>
-                <td>{product?.publishedAt}</td>
+                <td>{product?.salesPrice || product?.salePrice}</td>
+                <td>{product?.availableQty}</td>
+                <td>{new Date(product?._publishedAt).getDate()}</td>
                 <td>{product?.inStock ? '1' : '0'}</td>
                 <td>{product?.featured ? '1' : '0'}</td>
                 <td>{product?.trending ? '1' : '0'}</td>
