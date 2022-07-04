@@ -26,7 +26,7 @@ export default function Admin() {
           console.log("Error getAllProducts Call>>>", err);
           return err;
         });
-      console.log(res)
+      // console.log(res)
       res?.data?.success && setProducts(res.data.message)
     }
     fetch()
