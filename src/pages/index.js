@@ -4,7 +4,7 @@ import Head from "./../Layout/head";
 import Hero from "../components/home/hero";
 import Main from "../components/home/main";
 import { useEffect } from "react";
-import { getProductsByProp } from "../utils/getData";
+import { getProductsByPropty } from "../utils/getData";
 
 export default function Home({ featuredProducts, trendingProducts }) {
   const { name } = useGlobalContext();
@@ -25,8 +25,8 @@ export default function Home({ featuredProducts, trendingProducts }) {
 }
 
 export async function getStaticProps() {
-  const featuredProducts = await getProductsByProp('featured', 4)
-  const trendingProducts = await getProductsByProp('trending', 4)
+  const featuredProducts = await getProductsByPropty('featured', 4)
+  const trendingProducts = await getProductsByPropty('trending', 4)
 
   return {
     props: { featuredProducts, trendingProducts },

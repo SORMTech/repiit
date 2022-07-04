@@ -34,10 +34,16 @@ export async function getProductsByCategory(category, limit, sumOfprevLimits = "
   }
 }
 
-export async function getProductsByProp(prop, limit, sumOfprevLimits = "0") {
+export async function getProductsByPropty(propty, limit, sumOfprevLimits = "0") {
   try {
     await connect()
-    const products = await Product.find({ prop: true }).limit(limit).skip(sumOfprevLimits)
+    var products = []
+    if(propty == 'featured'){
+      products = await Product.find({ featured: true }).limit(parseInt(limit)).skip(parseInt(sumOfprevLimits))
+    }
+    if(propty == 'trending'){
+      products = await Product.find({ trending: true }).limit(parseInt(limit)).skip(parseInt(sumOfprevLimits))
+    }
     await disconnect()
 
     return JSON.parse(JSON.stringify(products))

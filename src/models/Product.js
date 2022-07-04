@@ -9,7 +9,7 @@ const productSchema = mongoose.Schema({
   availableQty: { type: Number, default: 1 },
   category: { type: [], require: true },
   color: { type: String },
-  image: { type: String, require: true },
+  productImage: { type: String, require: true },
   description: { type: String, default: '' },
   inStock: { type: Boolean, default: true },
   published: { type: Boolean, default: true },

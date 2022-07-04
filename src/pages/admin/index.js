@@ -1,16 +1,77 @@
+import Link from 'next/link'
 import AdminLayout from './adminLayout'
 import { BsArrowRightSquare, BsPencilSquare, BsTrash, BsToggleOff, BsToggleOn } from 'react-icons/bs'
-import { getAllProducts } from '../../utils/getData'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-export default function Admin({ products }) {
-  // console.log(products);
-  var spinner = null
-  var spinnerBody = null
+export default function Admin() {
+  const [products, setProducts] = useState();
+  const [limit, setLimit] = useState(50)
+  const [sumOfprevLimits, setSumOfprevLimits] = useState(0)
+  const [productsChanged, setProductsChanged] = useState(false)
+
+  // // console.log(products);
+  // var spinner = null
+  // var spinnerBody = null
+  // useEffect(() => {
+  //   spinner = document.querySelector('#spinner');
+  //   spinnerBody = document.querySelector("#spinnerBody");
+  // }, [])
+
   useEffect(() => {
-    spinner = document.querySelector('#spinner');
-    spinnerBody = document.querySelector("#spinnerBody");
-  }, [])
+    const fetch = async () => {
+      const res = await axios
+        .get(`/api/products?limit=${limit}&sumOfprevLimits=${sumOfprevLimits}`)
+        .catch((err) => {
+          console.log("Error getAllProducts Call>>>", err);
+          return err;
+        });
+      // console.log(res)
+      res.data.success && setProducts(res.data.message)
+    }
+    fetch()
+  }, [productsChanged])
+
+  async function updateProp(id, propty, value) {
+    const spinner = document.querySelector('#spinner');
+    spinner.classList.toggle('hidden')
+    const res = await axios
+      .put(`/api/products?propty=${propty}&id=${id}&value=${value}&spinner=${spinner}`)
+      .catch((err) => {
+        alert('Error Put Call, check console for more details')
+        console.log("Error Put Call>>>", err);
+      });
+    // console.log(res)
+    setProductsChanged(!productsChanged)
+    spinner.classList.toggle('hidden')
+  }
+
+  async function deleteProduct(id) {
+    if (window.confirm(`Do you really want to delete this product? (${id})`) == true) {
+      const spinner = document.querySelector('#spinner');
+      spinner.classList.toggle('hidden')
+      const res = await axios
+        .delete(`/api/products?id=${id}`)
+        .catch((err) => {
+          alert('Error Delete Call, check console for more details')
+          console.log("Error delete Call>>>", err);
+        });
+      setProductsChanged(!productsChanged)
+      spinner.classList.toggle('hidden')
+    }
+  }
+
+  function formatDate(date) {
+    const nDate = new Date(date)
+    const day = nDate.getDate()
+    const month = nDate.getMonth()
+    const year = nDate.getFullYear();
+
+    const formatedDate = day + '-' + month + '-' + year
+    
+    return formatedDate
+  }
+
 
   return (<>
     <AdminLayout>
@@ -21,37 +82,37 @@ export default function Admin({ products }) {
       <div className="text-lg font-midium mt-5 font-bold text-center">Products</div>
 
       <div className="max-h-80 overflow-auto">
-        <table class="table-auto min-w-full">
-          <thead class="bg-white border-b">
+        <table className="table-auto min-w-full">
+          <thead className="bg-white border-b">
             <tr>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 #
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Product name
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Regular price
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Sales price
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Published at
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 Available qty
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 In stock
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 featured
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 trending
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+              <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 total_qty_sold
               </th>
             </tr>
@@ -59,69 +120,69 @@ export default function Admin({ products }) {
           <tbody>
             {products?.map((product, index) => {
               return (
-                <tr class={`${(index + 1) % 2 == 0 ? 'hover:bg-gray-200' : 'bg-gray-300 border-b hover:bg-gray-200'}`} key={product?._id}>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <tr className={`${(index + 1) % 2 == 0 ? 'hover:bg-gray-200' : 'bg-gray-300 border-b hover:bg-gray-200'}`} key={product?._id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div className="flex items-center gap-2">
                       {index + 1}
-                      <div className="cursor-pointer"><BsPencilSquare /></div>
-                      <div className="cursor-pointer"><BsTrash /></div>
+                      <Link href={`/admin/edit/${product?._id}`}><a className="hover:text-blue-700"><BsPencilSquare /></a></Link>
+                      <div onClick={() => { deleteProduct(product?._id) }} className="cursor-pointer text-red-700"><BsTrash /></div>
                     </div>
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {product?.name}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {product?.price}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {product?.salesPrice || product?.salePrice}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    {product?._publishedAt && formatDate(product?._publishedAt)}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {product?.availableQty}
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    {new Date(product?._publishedAt).getDate()}
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       {product?.inStock ? '1' : '0'}
                       <div onClick={async () => {
                         spinner.classList.toggle('hidden')
-                        await updateProp(inStock, product?.inStock ? false : true)
+                        await updateProp(product?._id, 'inStock', product?.inStock ? false : true)
                         spinner.classList.toggle('hidden')
                       }}>
-                        {product?.inStock ? <div className="cursor-pointer"><BsToggleOff /></div> :
-                          <div className="cursor-pointer"><BsToggleOn /></div>}
+                        {product?.inStock ? <div className="cursor-pointer"><BsToggleOn /></div> :
+                          <div className="cursor-pointer"><BsToggleOff /></div>}
                       </div>
                     </div>
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       {product?.featured ? '1' : '0'}
                       <div onClick={async () => {
                         spinner.classList.toggle('hidden')
-                        await updateProp(featured, product?.featured ? false : true)
+                        await updateProp(product?._id, 'featured', product?.featured ? false : true)
                         spinner.classList.toggle('hidden')
                       }}>
-                        {product?.featured ? <div className="cursor-pointer"><BsToggleOff /></div> :
-                          <div className="cursor-pointer"><BsToggleOn /></div>}
+                        {product?.featured ? <div className="cursor-pointer"><BsToggleOn /></div> :
+                          <div className="cursor-pointer"><BsToggleOff /></div>}
                       </div>
                     </div>
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       {product?.trending ? '1' : '0'}
                       <div onClick={async () => {
                         spinner.classList.toggle('hidden')
-                        await updateProp(trending, product?.trending ? false : true)
+                        await updateProp(product?._id, 'trending', product?.trending ? false : true)
                         spinner.classList.toggle('hidden')
                       }}>
-                        {product?.trending ? <div className="cursor-pointer"><BsToggleOff /></div> :
-                          <div className="cursor-pointer"><BsToggleOn /></div>}
+                        {product?.trending ? <div className="cursor-pointer"><BsToggleOn /></div> :
+                          <div className="cursor-pointer"><BsToggleOff /></div>}
                       </div>
                     </div>
                   </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     {product?.totalQtySold}
                   </td>
                 </tr>
@@ -152,9 +213,14 @@ export async function getServerSideProps(context) {
 
   // const users = await getAllUsers()
 
-  const products = await getAllProducts(50)
+  // const products = await getAllProducts(1)
 
+  // if (products) {
+  //   return {
+  //     props: { initialProduct: products }
+  //   }
+  // }
   return {
-    props: { products }
+    props: { }
   }
 }
