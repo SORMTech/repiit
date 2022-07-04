@@ -76,7 +76,7 @@ async function deleteProduct(req, res) {
 }
 
 async function getProducts(req, res) {
-    // try {
+    try {
     const connectionRes = await connect()
     if (connectionRes.success) {
         var products = null;
@@ -139,13 +139,13 @@ async function getProducts(req, res) {
             success: true,
         });
     }
-    // } catch (err) {
-    //     // // console.log('err', err)
-    //     res.json({
-    //         message: new Error(err).message,
-    //         success: false,
-    //     })
-    // }
+    } catch (err) {
+        // // console.log('err', err)
+        res.json({
+            message: new Error(err).message,
+            success: false,
+        })
+    }
 }
 
 // async function getProductBySlug(req, res) {
