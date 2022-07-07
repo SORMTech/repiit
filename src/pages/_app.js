@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         routers.events.off('routeChangeComplete', logEvent);
       };
     }
-  }, [])
+  }, [routers])
 
   return (
     <>
