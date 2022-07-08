@@ -12,9 +12,7 @@ const AuthContext = createContext({})
 
 export const useAuth = () => useContext(AuthContext)
 
-export const AuthContextProvider = ({
-  children,
-}) => {
+export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   // console.log(user)
@@ -41,12 +39,13 @@ export const AuthContextProvider = ({
     const displayName = fullName.split(' ')[0] // first word from full name
     let msg = 'success';
     createUserWithEmailAndPassword(auth, email, password)
-    .then(async (authUser) => {
-      updateProfile(authUser.user, { displayName })
-    })
-    .catch(e => {
-      msg = e.message
-    });
+      .then(async (authUser) => {
+        updateProfile(authUser.user, { displayName })
+        // ...
+      })
+      .catch(e => {
+        msg = e.message
+      });
     return msg
   }
 
