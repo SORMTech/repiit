@@ -11,7 +11,7 @@ export default function Home({ featuredProducts, trendingProducts }) {
   const { name } = useGlobalContext();
   const { user } = useAuth();
 
-  console.log(name, user)
+  // console.log(name, user)
 
   useEffect(() => {
     // console.log(featuredProducts, trendingProducts)

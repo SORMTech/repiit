@@ -15,20 +15,19 @@ function WithGoogle() {
           //   const token = credential.accessToken;
           // The signed-in user info.
           const user = result.user;
-          console.log("google user", user)
+          // console.log("google user", user)
 
           const isCustomer = await axios
-            .get(`/api/users?id=${user.uid}`)
+            .get(`/api/users?uid=${user?.uid}`)
             .catch((err) => {
               console.log("Error getUser Call >>>", err);
               return err
             });
-          
-          console.log('isCustomer >>>', isCustomer)
+          // console.log('isCustomer >>>', isCustomer)          
 
           if (!isCustomer.data.success) {
-            const data = { _id: user.uid, name: user.displayName, email: user.email, emailVerified: user.emailVerified, photoURL: user.photoURL }
-            const res = await axios('/api/users', {
+            const data = { uid: user.uid, name: user.displayName, email: user.email, emailVerified: user.emailVerified, photoURL: user.photoURL }
+            const createUserRes = await fetch('/api/users', {
               method: 'POST',
               body: JSON.stringify(data),
               headers: {
@@ -39,16 +38,18 @@ function WithGoogle() {
                 console.log("Error from /api/users POST-req >>", error)
               })
 
-            console.log("Response from create user /api/users POST-req", res)
+              const result = await createUserRes.json()
+
+            console.log("Response from create user /api/users POST-req", result)
           }
         }
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // const email = error.customData.email;
+        // // The AuthCredential type that was used.
+        // const credential = GoogleAuthProvider.credentialFromError(error);
         console.log("Error at signInWithPopup >>", error)
       });
   }

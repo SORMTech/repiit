@@ -53,42 +53,50 @@ async function addUser(req, res) {
 
 
 async function getUsers(req, res) {
-  try {
-    const connectionRes = await connect()
-    if (connectionRes.success) {
-      const limit = req.query.limit
-      const sumOfprevLimits = req.query.sumOfprevLimits
+  const connectionRes = await connect()
+  if (connectionRes.success) {
+    const limit = req.query.limit
+    const sumOfprevLimits = req.query.sumOfprevLimits
 
-      if (req.query.id) {
-        const id = req.query.id
-        // console.log(id)
-        const user = await User.findOne({ _id: new ObjectId(id) })
-        await disconnect()
-        // console.log(users)
+    if (req.query.uid) {
+      const uid = req.query.uid
+      // console.log(uid)
+      const user = await User.findOne({ uid: uid })
+      await disconnect()
+      // console.log("api get user by uid", user)
+
+      if (user) {
         return res.json({
-          message: JSON.parse(JSON.stringify(users)),
+          message: JSON.parse(JSON.stringify(user)),
           success: true,
         });
       }
-
-      const users = await User.find().sort({ "createdAt": -1 }).limit(parseInt(limit)).skip(parseInt(sumOfprevLimits))
-      await disconnect()
-
       return res.json({
-        message: JSON.parse(JSON.stringify(users)),
-        success: true,
-      });
+        message: 'Not a customer yet!',
+        success: false,
+      })
+
+      // try {
+      // } catch (err) {
+      //   // // console.log('err', err)
+      //   res.json({
+      //     message: new Error(err).message,
+      //     success: false,
+      //   })
+      // }
     }
 
-    res.json({
-      message: 'mongodb connection error',
-      success: false,
-    })
-  } catch (err) {
-    // // console.log('err', err)
-    res.json({
-      message: new Error(err).message,
-      success: false,
-    })
+    const users = await User.find().sort({ "createdAt": -1 }).limit(parseInt(limit)).skip(parseInt(sumOfprevLimits))
+    await disconnect()
+
+    return res.json({
+      message: JSON.parse(JSON.stringify(users)),
+      success: true,
+    });
   }
+
+  res.json({
+    message: 'mongodb connection error',
+    success: false,
+  })
 }
