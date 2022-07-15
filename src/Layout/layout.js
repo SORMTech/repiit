@@ -4,7 +4,7 @@ import Footer from "./footer";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className='max-w-7xl mx-auto'>
       <Nav />
       {children}
       <Footer />
