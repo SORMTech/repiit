@@ -15,10 +15,11 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  // console.log(user)
 
+  // listen for Firebase state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // console.log(user)
       if (user) {
         setUser(user);
         // setUser({
@@ -32,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
       setLoading(false)
     })
 
-    return () => unsubscribe()
+    unsubscribe()
   }, [])
 
   const signup = (email, password, fullName) => {

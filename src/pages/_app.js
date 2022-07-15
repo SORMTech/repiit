@@ -1,15 +1,12 @@
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react'
 import { AppProvider } from "../Layout/context";
 import { analytics } from '../lib/firebase';
 import { useRouter } from "next/router";
-import WithGoogle from "../components/auth/WithGoogle";
-import { useAuth } from "../context/AuthContext";
 
 function MyApp({ Component, pageProps }) {
   const routers = useRouter();
-  const { user } = useAuth();
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && analytics) {
@@ -29,14 +26,22 @@ function MyApp({ Component, pageProps }) {
     }
   }, [routers])
 
+  // const logout = async () => {
+  //   setCurrentUser(null)
+  //   let msg = 'success';
+  //   await signOut(auth).catch(e => {
+  //     msg = e.message
+  //   });
+  //   console.log("Logout msg >>>", msg)
+  // }
+
   return (
     <>
-      <AppProvider>
-        {!user && <div className="fixed top-0 left-0 z-50">
-          <WithGoogle />
-        </div>}
-        <Component {...pageProps} />
-      </AppProvider>
+      <AuthContextProvider>
+        <AppProvider>
+          <Component {...pageProps} />
+        </AppProvider>
+      </AuthContextProvider>
     </>
   );
 }
