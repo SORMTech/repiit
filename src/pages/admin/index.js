@@ -30,7 +30,7 @@ export default function Admin() {
       res?.data?.success && setProducts(res.data.message)
     }
     fetch()
-  }, [productsChanged])
+  }, [productsChanged, limit, sumOfprevLimits])
 
   async function updateProp(id, propty, value) {
     const spinner = document.querySelector('#spinner');
