@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { AppProvider } from "../Layout/context";
 import { analytics } from '../lib/firebase';
 import { useRouter } from "next/router";
+import { AuthContextProvider } from '../context/AuthContext'
 
 function MyApp({ Component, pageProps }) {
   const routers = useRouter();
