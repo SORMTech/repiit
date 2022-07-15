@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 
 const main = ({ featuredProducts, trendingProducts }) => {
-  // console.log(featuredProducts, trendingProducts);
+  console.log(featuredProducts, trendingProducts);
 
   const addStyle =
     "bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white flex justify-around items-center p-2 px-3 sm:px-6 -translate-y-20 w-fit ml-auto cursor-pointer hover:scale-105";
