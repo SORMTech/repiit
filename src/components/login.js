@@ -53,7 +53,7 @@ const Login = ({ setLogin, router }) => {
         </button>
 
         <p className='text-center'>
-          Don't have an account?
+          Don`t have an account?
           <span
             className='text-[#F28A13] cursor-pointer mx-1'
             onClick={() => setLogin(false)}
