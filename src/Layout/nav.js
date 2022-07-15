@@ -4,13 +4,11 @@ import { MdClose, MdSearch } from "react-icons/md";
 import { BsCart2 } from "react-icons/bs";
 import { BiMenuAltRight } from "react-icons/bi";
 import style from "./../styles/nav.module.css";
-import { useRouter } from "next/router";
 
 const Nav = () => {
-  const router = useRouter();
   return (
     <>
-      <nav className='p-4 flex items-center absolute z-50 top-0 w-full px-8 shadow-sm max-w-7xl mx-auto'>
+      <nav className='p-4 flex items-center absolute z-50 top-0 w-full px-8 shadow-sm'>
         <div className='hidden w-1/2 lg:flex grid-cols-5 justify-between text-bold'>
           <Link href='/'>New & Featured</Link>
           <Link href='/'>Men</Link>
@@ -45,11 +43,8 @@ const Nav = () => {
           </div>
           <div className='text-sm hidden sm:flex justify-around items-center font-bold'>
             <h5>Join us</h5>
-            <button
-              className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 p-2 text-white font-bold rounded-md hover:scale-105 transition px-5'
-              onClick={() => router.push("/signin")}
-            >
-              Signin
+            <button className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 p-2 text-white font-bold rounded-md hover:scale-105 transition'>
+              Get Started
             </button>
           </div>
           <div className='flex flex-col items-end'>

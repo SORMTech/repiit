@@ -208,7 +208,7 @@ async function updateProduct(req, res) {
     
         await connect()
         let rq = await Product.updateOne({ _id: new ObjectId(id) }, { $set: { ...product } })
-        // console.log(rq)
+        console.log(rq)
         await disconnect()
 
         return res.json({

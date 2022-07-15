@@ -4,13 +4,13 @@ const connection = {}
 
 async function connect() {
   if (connection.isConnected) {
-    // console.log('already connected')
+    console.log('already connected')
     return {success: true}
   }
   if (mongoose.connections.length > 0) {
     connection.isConnected = mongoose.connections[0].readyState
     if (connection.isConnected === 1) {
-      // console.log('use previous connection')
+      console.log('use previous connection')
       return {success: true}
     }
     // await mongoose.disconnect()
@@ -20,9 +20,8 @@ async function connect() {
     // useUnifiedTopology: true,
     // useCreateIndex: true,
   })
+  console.log('new connection')
   connection.isConnected = db.connections[0].readyState
-  // console.log('new connection')
-  return {success: true}
 }
 
 async function disconnect() {
@@ -31,8 +30,7 @@ async function disconnect() {
       await mongoose.disconnect()
       connection.isConnected = false
     } else {
-      // console.log('not disconnected')
-      return {success: false}
+      console.log('not disconnected')
     }
   }
 }
