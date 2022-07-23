@@ -5,8 +5,10 @@ import Hero from "../components/home/hero";
 import Main from "../components/home/main";
 import { useEffect } from "react";
 import { getProductsByPropty } from "../utils/getData";
+import { useAuth } from "../context/AuthContext";
 
 export default function Home({ featuredProducts, trendingProducts }) {
+  const { user } = useAuth()
   const { name } = useGlobalContext();
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function Home({ featuredProducts, trendingProducts }) {
 
   return (
     <>
-      <Layout>
+      <Layout user={user} >
         <Head />
         <Hero />
         <Main featuredProducts={featuredProducts} trendingProducts={trendingProducts} />

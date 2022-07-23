@@ -7,16 +7,6 @@ import { BsArrowLeftSquare } from 'react-icons/bs'
 
 export default function AdminLayout({ children }) {
   return (<>
-    <div id="spinner" className="hidden fixed top-0 left-0 w-full h-screen z-50" style={{ background: 'rgba(0,0,0,.7)' }}>
-      <div className="grid place-items-center">
-        <div id="spinnerBody" className="flex justify-center items-center">
-          <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-            <span className="hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     {/* <div id="overlay" className="fixed top-0 left-0 w-full h-screen z-[99999]" style={{ background: 'rgba(0,0,0,.7)' }}></div> */}
 
     <div className="w-screen overflow-auto flex">

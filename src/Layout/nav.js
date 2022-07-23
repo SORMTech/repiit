@@ -2,11 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { MdClose, MdSearch } from "react-icons/md";
 import { BsCart2 } from "react-icons/bs";
-import { BiMenuAltRight } from "react-icons/bi";
+import { BiLogOut, BiMenuAltRight, BiUserCircle } from "react-icons/bi";
 import style from "./../styles/nav.module.css";
 import { useRouter } from "next/router";
+import { useAuth } from "../context/AuthContext";
 
-const Nav = () => {
+const Nav = ({ user }) => {
+  const { logout } = useAuth()
   const router = useRouter();
   return (
     <>
@@ -27,9 +29,9 @@ const Nav = () => {
               <i className='text-xl hidden sm:block'>
                 <MdSearch />
               </i>
-              <form action='' className='hidden sm:block'>
+              <form action='' className='hidden mx-2 sm:block'>
                 <input
-                  className='bg-gray-50 w-fit'
+                  className='bg-gray-50 w-fit outline-none'
                   type='text'
                   placeholder='search'
                 />
@@ -43,7 +45,17 @@ const Nav = () => {
               </span>
             </div>
           </div>
-          <div className='text-sm hidden sm:flex justify-around items-center font-bold'>
+          {user ? <>
+          <div className="flex items-center justify-center gap-2">
+            <div className="grid place-items-center text-4xl"><BiUserCircle /></div>
+            <button
+              className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white font-bold rounded-md hover:scale-105 transition px-5 flex items-center gap-2'
+              onClick={() => logout() }
+            >
+              Logout <BiLogOut />
+            </button>
+          </div>
+          </> : <div className='text-sm hidden sm:flex justify-around items-center font-bold'>
             <h5>Join us</h5>
             <button
               className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 p-2 text-white font-bold rounded-md hover:scale-105 transition px-5'
@@ -51,7 +63,7 @@ const Nav = () => {
             >
               Signin
             </button>
-          </div>
+          </div>}
           <div className='flex flex-col items-end'>
             <i className='w-fit flex sm:hidden flex-col items-center justify-center bg-black text-white text-3xl p-1'>
               <BiMenuAltRight />

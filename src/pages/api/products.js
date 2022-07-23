@@ -1,4 +1,5 @@
 import Product from '../../models/Product';
+import History from '../../models/History';
 import { connect, disconnect } from '../../utils/db';
 const ObjectId = require('mongodb').ObjectId;
 

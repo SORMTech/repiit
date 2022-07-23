@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoNavigate } from "react-icons/io5";
+import { useAuth } from '../context/AuthContext';
 
 const Signup = ({ setLogin, router }) => {
+  const { signup } = useAuth();
+  const [userDetails, setUserDetails] = useState();
+
+  const handleSubmit = async () => {
+    const spinner = document.querySelector('#spinner');
+    spinner.classList.toggle('hidden')
+    // console.log(userDetails);
+    if(userDetails){
+      let res = await signup({ email: userDetails?.email, password: userDetails?.password, fullName: userDetails?.fullName });
+      // setUserDetails()
+      if(res.sucess){
+        alert("you've sucessfuly registered!");
+        router.push('/');
+      }else{
+        if(res.message == "Firebase: Error (auth/email-already-in-use)."){
+          alert("You've already registered, please just login");
+          setLogin(true)
+        }else{
+          alert(res.message);
+        }        
+        // window.location.reload();
+      }
+    }
+    spinner.classList.toggle('hidden')
+  }
+
   return (
     <div className='px-8 py-12'>
       <div className='flex space-x-4 items-center justify-center sm:justify-start'>
@@ -17,7 +44,7 @@ const Signup = ({ setLogin, router }) => {
         action=''
         onSubmit={(e) => {
           e.preventDefault();
-          router.push("/");
+          handleSubmit()
         }}
       >
         <label htmlFor='name' className='text-xl font-semibold block my-2'>
@@ -28,6 +55,9 @@ const Signup = ({ setLogin, router }) => {
           placeholder='Full name'
           id='name'
           className='block font-thin border-2 p-2 w-full rounded-md'
+          onChange={(e) => { setUserDetails({ ...userDetails, fullName: e.target.value }) }}
+          value={userDetails?.fullName ? userDetails?.fullName : ''}
+          required
         />
         <label htmlFor='email' className='text-xl font-semibold block my-2'>
           Email <span className='text-red-400'>*</span>
@@ -37,6 +67,9 @@ const Signup = ({ setLogin, router }) => {
           placeholder='Enter email'
           id='email'
           className='block font-thin border-2 p-2 w-full rounded-md'
+          onChange={(e) => { setUserDetails({ ...userDetails, email: e.target.value }) }}
+          value={userDetails?.email ? userDetails?.email : ''}
+          required
         />
         <label htmlFor='password' className='text-xl font-semibold block my-2'>
           Password <span className='text-red-400'>*</span>
@@ -45,6 +78,9 @@ const Signup = ({ setLogin, router }) => {
           type='password'
           placeholder='Enter password '
           className='block font-thin border-2 p-2 w-full rounded-md'
+          onChange={(e) => { setUserDetails({ ...userDetails, password: e.target.value }) }}
+          value={userDetails?.password ? userDetails?.password : ''}
+          required
         />
         <input
           className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white py-4 rounded-md font-semibold cursor-pointer hover:scale-95 transition w-full my-5 text-center'

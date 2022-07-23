@@ -2,10 +2,11 @@ import React from "react";
 import Nav from "./nav";
 import Footer from "./footer";
 
-const Layout = ({ children }) => {
+const Layout = ({ user, children }) => {
+  
   return (
     <div className='max-w-7xl mx-auto'>
-      <Nav />
+      <Nav user={user} />
       {children}
       <Footer />
     </div>

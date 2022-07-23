@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const Signin = () => {
   const router = useRouter();
   const [login, setLogin] = React.useState(true);
-  console.log(login);
+
   return (
     <div className='py-10 px-4 text-gray-700 min-h-screen flex flex-col justify-center items-center max-w-7xl mx-auto'>
       <div className='grid sm:grid-cols-2 shadow-lg justify-center items-center'>
