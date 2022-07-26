@@ -15,9 +15,9 @@ async function connect() {
     }
     await mongoose.disconnect()
   }
-  // const db = await mongoose.connect(process.env.MONGODB_URI, {
   // const db = await mongoose.connect("mongodb+srv://sorm:h2V6JUeyQWJeTVH@cluster0.ti1ie.mongodb.net/?retryWrites=true&w=majority", {
-  const db = await mongoose.connect("mongodb://sorm:h2V6JUeyQWJeTVH@cluster0-shard-00-00.ti1ie.mongodb.net:27017,cluster0-shard-00-01.ti1ie.mongodb.net:27017,cluster0-shard-00-02.ti1ie.mongodb.net:27017/?ssl=true&replicaSet=atlas-jmcdej-shard-0&authSource=admin&retryWrites=true&w=majority", {
+  // const db = await mongoose.connect("mongodb://sorm:h2V6JUeyQWJeTVH@cluster0-shard-00-00.ti1ie.mongodb.net:27017,cluster0-shard-00-01.ti1ie.mongodb.net:27017,cluster0-shard-00-02.ti1ie.mongodb.net:27017/?ssl=true&replicaSet=atlas-jmcdej-shard-0&authSource=admin&retryWrites=true&w=majority", {
+  const db = await mongoose.connect(process.env.MONGODB_URI, {
     // useNewUrlParser: true,
     // useUnifiedTopology: true,
     // useCreateIndex: true,
