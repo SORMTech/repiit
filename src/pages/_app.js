@@ -9,30 +9,30 @@ import { AuthContextProvider } from '../context/AuthContext'
 function MyApp({ Component, pageProps }) {
   const routers = useRouter();
 
-  useEffect(() => {
-    const unsubscribe = async () => {
-      if (process.env.NODE_ENV === 'production' && analytics) {
-        const logEvent = (url) => {
-          analytics().setCurrentScreen(url);
-          analytics().logEvent('screen_view');
-        };
+  // useEffect(() => {
+  //   const unsubscribe = async () => {
+  //     if (process.env.NODE_ENV === 'production' && analytics) {
+  //       const logEvent = (url) => {
+  //         analytics().setCurrentScreen(url);
+  //         analytics().logEvent('screen_view');
+  //       };
   
-        routers.events.on('routeChangeComplete', logEvent);
-        //For First Page
-        logEvent(window.location.pathname);
-        await fetch('api/history', {
-          method: 'POST',
-          body: JSON.stringify({ user: null, action: 'screen_view', details: window.location.pathname })
-        })
+  //       routers.events.on('routeChangeComplete', logEvent);
+  //       //For First Page
+  //       logEvent(window.location.pathname);
+  //       await fetch('api/history', {
+  //         method: 'POST',
+  //         body: JSON.stringify({ user: null, action: 'screen_view', details: window.location.pathname })
+  //       })
   
-        //Remvove Event Listener after un-mount
-        return () => {
-          routers.events.off('routeChangeComplete', logEvent);
-        };
-      }
-    }
-    return unsubscribe
-  }, [routers])
+  //       //Remvove Event Listener after un-mount
+  //       return () => {
+  //         routers.events.off('routeChangeComplete', logEvent);
+  //       };
+  //     }
+  //   }
+  //   return unsubscribe
+  // }, [routers])
 
   return (
     <>
