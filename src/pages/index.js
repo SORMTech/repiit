@@ -16,12 +16,12 @@ export default function Home({ featuredProducts, trendingProducts }) {
   }, [featuredProducts, trendingProducts])
 
   return (
-    <>
-      <Layout user={user} >
+    <>hello
+      {/* <Layout user={user} >
         <Head />
         <Hero />
         <Main featuredProducts={featuredProducts} trendingProducts={trendingProducts} />
-      </Layout>
+      </Layout> */}
     </>
   );
 }

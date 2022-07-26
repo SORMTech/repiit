@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+// import { getAuth } from "firebase/auth";
+// import { getAnalytics } from "firebase/analytics";
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -28,9 +28,9 @@ try {
   console.log(e)
 }
 
-export const auth = getAuth();
+// export const auth = getAuth();
 
-export var analytics = undefined;
-if (app?.name && typeof window !== 'undefined') {
-  analytics = getAnalytics(app)
-}
+// export var analytics = undefined;
+// if (app?.name && typeof window !== 'undefined') {
+//   analytics = getAnalytics(app)
+// }
