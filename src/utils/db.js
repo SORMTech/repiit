@@ -13,7 +13,7 @@ async function connect() {
       console.log('use previous connection')
       return {success: true}
     }
-    // await mongoose.disconnect()
+    await mongoose.disconnect()
   }
   // const db = await mongoose.connect(process.env.MONGODB_URI, {
   // const db = await mongoose.connect("mongodb+srv://sorm:h2V6JUeyQWJeTVH@cluster0.ti1ie.mongodb.net/?retryWrites=true&w=majority", {

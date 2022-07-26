@@ -8,30 +8,32 @@ import { getProductsByPropty } from "../utils/getData";
 import { useAuth } from "../context/AuthContext";
 
 export default function Home({ featuredProducts, trendingProducts }) {
-  const { user } = useAuth()
-  const { name } = useGlobalContext();
+  // const { user } = useAuth()
+  // const { name } = useGlobalContext();
 
-  useEffect(() => {
-    // console.log(featuredProducts, trendingProducts)
-  }, [featuredProducts, trendingProducts])
+  // useEffect(() => {
+  //   // console.log(featuredProducts, trendingProducts)
+  // }, [featuredProducts, trendingProducts])
 
   return (
     <>
-      <Layout user={user} >
+    hello
+      {/* <Layout user={user} >
         <Head />
         <Hero />
         <Main featuredProducts={featuredProducts} trendingProducts={trendingProducts} />
-      </Layout>
+      </Layout> */}
     </>
   );
 }
 
 export async function getStaticProps() {
-  const featuredProducts = await getProductsByPropty('featured', 4)
-  const trendingProducts = await getProductsByPropty('trending', 4)
+  // const featuredProducts = await getProductsByPropty('featured', 4)
+  // const trendingProducts = await getProductsByPropty('trending', 4)
 
   return {
-    props: { featuredProducts, trendingProducts },
+    // props: { featuredProducts, trendingProducts },
+    props: { featuredProducts:null, trendingProducts:null },
     revalidate: 1
   }
 }
