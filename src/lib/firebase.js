@@ -11,7 +11,7 @@ export const firebaseConfig = {
   // messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   // appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   // measurementId: process.env.NEXT_PUBLIC_FIREBASE_MESSUREMENT_ID
-  
+
   apiKey: "AIzaSyBsRLDwHCDVm0DaB26ArD3oLNJf3qULOiw",
   authDomain: "sorm-tech.firebaseapp.com",
   projectId: "sorm-tech",
@@ -21,7 +21,12 @@ export const firebaseConfig = {
   measurementId: "G-2DGX4X3YPB"
 };
 
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+var app = null
+try {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+} catch (e) {
+  console.log(e)
+}
 
 export const auth = getAuth();
 
