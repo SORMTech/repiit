@@ -5,10 +5,10 @@ import { BsCart2 } from "react-icons/bs";
 import { BiLogOut, BiMenuAltRight, BiUserCircle } from "react-icons/bi";
 import style from "./../styles/nav.module.css";
 import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
+// import { useAuth } from "../context/AuthContext";
 
 const Nav = ({ user }) => {
-  const { logout } = useAuth()
+  // const { logout } = useAuth()
   const router = useRouter();
   return (
     <>
@@ -50,8 +50,8 @@ const Nav = ({ user }) => {
             <div className="grid place-items-center text-4xl"><BiUserCircle /></div>
             <button
               className='bg-gradient-to-b from-orange-600 via-red-500 to-red-500 text-white font-bold rounded-md hover:scale-105 transition px-5 flex items-center gap-2'
-              onClick={() => logout() }
-            >
+              >
+                {/* onClick={() => logout() } */}
               Logout <BiLogOut />
             </button>
           </div>
