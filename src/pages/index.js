@@ -5,25 +5,23 @@ import Hero from "../components/home/hero";
 import Main from "../components/home/main";
 import { useEffect } from "react";
 import { getProductsByPropty } from "../utils/getData";
-// import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Home({ featuredProducts, trendingProducts }) {
-  // const { user } = useAuth()
-  const user = null
+  const { user } = useAuth()
   const { name } = useGlobalContext();
 
   useEffect(() => {
-    console.log(featuredProducts, trendingProducts)
+    // console.log(featuredProducts, trendingProducts)
   }, [featuredProducts, trendingProducts])
 
   return (
     <>
-    hello
-      {/* <Layout user={user} >
+      <Layout user={user} >
         <Head />
         <Hero />
         <Main featuredProducts={featuredProducts} trendingProducts={trendingProducts} />
-      </Layout> */}
+      </Layout>
     </>
   );
 }
