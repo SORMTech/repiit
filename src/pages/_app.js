@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { AppProvider } from "../Layout/context";
 // import { analytics } from '../lib/firebase';
 import { useRouter } from "next/router";
-import { AuthContextProvider } from '../context/AuthContext'
+// import { AuthContextProvider } from '../context/AuthContext'
 
 function MyApp({ Component, pageProps }) {
   const routers = useRouter();
@@ -49,11 +49,11 @@ function MyApp({ Component, pageProps }) {
         </div>
       </div>
 
-      <AuthContextProvider>
+      {/* <AuthContextProvider> */}
         <AppProvider>
           <Component {...pageProps} />
         </AppProvider>
-      </AuthContextProvider>
+      {/* </AuthContextProvider> */}
     </>
   );
 }

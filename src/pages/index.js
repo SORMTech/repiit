@@ -4,7 +4,7 @@ import { useGlobalContext } from "../Layout/context";
 // import Hero from "../components/home/hero";
 // import Main from "../components/home/main";
 import { useEffect } from "react";
-import { getProductsByPropty } from "../utils/getData";
+// import { getProductsByPropty } from "../utils/getData";
 // import { useAuth } from "../context/AuthContext";
 
 export default function Home({ featuredProducts, trendingProducts }) {
@@ -28,11 +28,11 @@ export default function Home({ featuredProducts, trendingProducts }) {
 }
 
 export async function getStaticProps() {
-  const featuredProducts = await getProductsByPropty('featured', 4)
-  const trendingProducts = await getProductsByPropty('trending', 4)
+  // const featuredProducts = await getProductsByPropty('featured', 4)
+  // const trendingProducts = await getProductsByPropty('trending', 4)
 
   return {
-    props: { featuredProducts, trendingProducts },
+    props: { featuredProducts: null, trendingProducts: null },
     revalidate: 1
   }
 }
